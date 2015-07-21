@@ -1,4 +1,5 @@
 ## A pair of functions implementing a matrix which caches its inverse to avoid costly recalculation.
+## See tests at: ./tests/testthat/testcachematrix.R
 
 ## Creates a special "matrix" object that can cache its inverse.
 makeCacheMatrix <- function(x = matrix()) {
