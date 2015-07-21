@@ -72,8 +72,8 @@ test_that("it returns inverse of matrix", {
     expect_identical(result, solve(original))
 })
 
-test_that("it is faster to use than the uncached version", {
-    iterations   <- 1:50000
+test_that("it is at least twice as fast compared to the uncached version", {
+    iterations   <- 1:10000
     rawMatrix    <- makeTestMatrix()
     cachedMatrix <- makeCacheMatrix(rawMatrix)
 
@@ -82,6 +82,5 @@ test_that("it is faster to use than the uncached version", {
 
     timeFraction <- cachedTime['elapsed'] / rawTime['elapsed']
 
-    print(timeFraction)
     expect_less_than(timeFraction, 0.5)
 })
