@@ -60,3 +60,28 @@ test_that("matrix object's getinverse returns null after new matrix set by set",
 
     expect_null(result)
 })
+
+context("cacheSolve")
+
+test_that("it returns inverse of matrix", {
+    original <- makeTestMatrix()
+    m <- makeCacheMatrix(original)
+
+    result <- cacheSolve(m)
+
+    expect_identical(result, solve(original))
+})
+
+test_that("it is faster to use than the uncached version", {
+    iterations   <- 1:50000
+    rawMatrix    <- makeTestMatrix()
+    cachedMatrix <- makeCacheMatrix(rawMatrix)
+
+    rawTime    <- system.time(lapply(iterations, function(x) solve(rawMatrix)))
+    cachedTime <- system.time(lapply(iterations, function(x) cacheSolve(cachedMatrix)))
+
+    timeFraction <- cachedTime['elapsed'] / rawTime['elapsed']
+
+    print(timeFraction)
+    expect_less_than(timeFraction, 0.5)
+})
