@@ -2,7 +2,12 @@
 
 ## Creates a special "matrix" object that can cache its inverse.
 makeCacheMatrix <- function(x = matrix()) {
+    set <- function() {}
+    get <- function() {}
+    setinverse <- function() {}
+    getinverse <- function() {}
 
+    list(set = set, get = get, getinverse = getinverse, setinverse = setinverse)
 }
 
 
