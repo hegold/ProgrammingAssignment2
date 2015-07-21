@@ -2,8 +2,8 @@
 
 ## Creates a special "matrix" object that can cache its inverse.
 makeCacheMatrix <- function(x = matrix()) {
-    set <- function() {}
-    get <- function() {}
+    set <- function(y) { x <<- y }
+    get <- function() { x }
     setinverse <- function() {}
     getinverse <- function() {}
 
