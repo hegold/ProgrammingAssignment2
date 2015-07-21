@@ -2,10 +2,15 @@
 
 ## Creates a special "matrix" object that can cache its inverse.
 makeCacheMatrix <- function(x = matrix()) {
-    set <- function(y) { x <<- y }
+    localInverse <- NULL
+
+    set <- function(y) {
+        x <<- y
+        localInverse <<- NULL
+    }
     get <- function() { x }
-    setinverse <- function(inverse) {}
-    getinverse <- function() {}
+    setinverse <- function(inverse) { localInverse <<- inverse }
+    getinverse <- function() { localInverse }
 
     list(set = set, get = get, getinverse = getinverse, setinverse = setinverse)
 }

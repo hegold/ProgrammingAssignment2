@@ -50,3 +50,13 @@ test_that("matrix object's getinverse returns matrix set by setinverse", {
 
     expect_identical(result, expected)
 })
+
+test_that("matrix object's getinverse returns null after new matrix set by set", {
+    m <- makeCacheMatrix(makeTestMatrix())
+    m$setinverse(makeTestMatrix())
+    m$set(makeTestMatrix())
+
+    result = m$getinverse()
+
+    expect_null(result)
+})
